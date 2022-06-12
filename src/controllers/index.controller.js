@@ -13,7 +13,13 @@ const signIn = (req, res) => {
   res.redirect('/');  
 }
 
+const signOut = (req, res) => {
+  req.session.destroy(null);
+  res.redirect('/')
+}
+
 module.exports = {
   getindex,
-  signIn
+  signIn,
+  signOut
 }

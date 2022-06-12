@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS public.userdata
 
 CREATE TABLE IF NOT EXISTS public.usuario
 (
-    usuario character varying(30) NOT NULL,
+    usuario character varying(10) NOT NULL,
     pass character varying(255) NOT NULL,
     PRIMARY KEY (usuario)
 )

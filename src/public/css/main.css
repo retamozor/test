@@ -92,3 +92,12 @@ input[type=submit]:hover {
   transform: translate(0,-1px);
   box-shadow: 3px 6px 6px var(--shadow);
 }
+
+p {
+  font-family: 'Farro', sans-serif;
+  color: var(--neutral-100);
+}
+
+.error {
+  color: red;
+}

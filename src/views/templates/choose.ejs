@@ -1,1 +1,11 @@
-hola <%- user %>.
+<div class="container">
+  <div class="card">
+    <form method="get">
+      <h2>¡Hola <%- user %>!</h2>
+      <p>¿Que deseas Hacer?</p>
+      <input type="submit" formaction="/create-user-data" value="Ingresar datos">
+      <input type="submit" formaction="/update-user-data" value="Actualizar datos">
+      <input type="submit" formaction="/signOut" value="Cerrar sesión">
+    </form>
+  </div>
+</div>
