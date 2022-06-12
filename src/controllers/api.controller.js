@@ -139,6 +139,23 @@ const createUser = async (req, res) => {
   res.redirect('/')
 }
 
+const getSexo = async (req,res) => {
+  const sexos  = await pool.query('SELECT * FROM sexo')
+  res.status(302).json(sexos.rows)
+}
+const getEstado = async (req,res) => {
+  const estados  = await pool.query('SELECT * FROM estado')
+  res.status(302).json(estados.rows)
+}
+const getGS = async (req,res) => {
+  const gs  = await pool.query('SELECT * FROM grupo_sanguineo')
+  res.status(302).json(gs.rows)
+}
+const getRH = async (req,res) => {
+  const rh  = await pool.query('SELECT * FROM rh')
+  res.status(302).json(rh.rows)
+}
+
 
 module.exports = {
   getDpto,
@@ -146,5 +163,9 @@ module.exports = {
   getUserData,
   createUserData,
   updateUserData,
-  createUser
+  createUser,
+  getSexo,
+  getEstado,
+  getGS,
+  getRH
 }
