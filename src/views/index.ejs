@@ -8,8 +8,11 @@
   <title>Document</title>
 </head>
 <body>
-
-  <%- include('./templates/signIn') %>
+  <% if (auth) { %>
+    <%- include('./templates/choose') %>
+  <% }else{ %>
+    <%- include('./templates/signIn') %>
+  <% } %>
 
 </body>
 </html>

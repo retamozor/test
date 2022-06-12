@@ -9,5 +9,6 @@ module.exports = {
     port: process.env.PORT_DB || 5432
   },
   PORT: process.env.PORT || 8080,
-  SESSION_KY: process.env.SESSION_KY
+  SESSION_KY: process.env.SESSION_KY,
+  SECRET: process.env.SECRET
 }

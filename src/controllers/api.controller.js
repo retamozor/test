@@ -119,11 +119,32 @@ const updateUserData = async (req, res) => {
   }
 }
 
+const createUser = async (req, res) => {
+  const user = req.body;
+  try {
+    await pool.query(`
+    INSERT INTO
+      usuario (
+        usuario,
+        pass
+      )
+    VALUES (
+      '${user.usuario}',
+      crypt('${user.password}', gen_salt('bf'))
+    )
+  `)
+  } catch (error) {
+    return res.json(error)
+  }
+  res.redirect('/')
+}
+
 
 module.exports = {
   getDpto,
   getCiudadPorDpto,
   getUserData,
   createUserData,
-  updateUserData
+  updateUserData,
+  createUser
 }

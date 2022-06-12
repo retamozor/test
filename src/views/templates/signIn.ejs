@@ -5,6 +5,10 @@
       <input type="text" name="usuario" id="usuario" placeholder="Usuario">
       <input type="password" name="password" id="password" placeholder="Contraseña">
       <input type="submit" value="Iniciar sesión">
+      <% errors.forEach(error=> { %>
+        <p><%= error.msg %></p>
+      <% }); %>
+      <% user %>
     </form>
   </div>
 </div>

@@ -11,4 +11,6 @@ router.post('/user-data', api.createUserData)
 
 router.put('/user-data', api.updateUserData)
 
+router.post('/signUp', api.createUser)
+
 module.exports = router
