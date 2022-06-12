@@ -32,6 +32,13 @@ CREATE TABLE IF NOT EXISTS public.rh
     PRIMARY KEY (id)
 )
 
+CREATE TABLE IF NOT EXISTS public.estado
+(
+    id serial NOT NULL,
+    estado varchar(1),
+    PRIMARY KEY (id)
+)
+
 CREATE TABLE IF NOT EXISTS public.userdata
 (
     cedula integer NOT NULL,
@@ -56,7 +63,9 @@ CREATE TABLE IF NOT EXISTS public.userdata
     FOREIGN KEY (lugar_exp)
         REFERENCES public.ciudad (id) MATCH SIMPLE,
     FOREIGN KEY (rh)
-        REFERENCES public.rh (id) MATCH SIMPLE
+        REFERENCES public.rh (id) MATCH SIMPLE,
+    FOREIGN KEY (estado)
+        REFERENCES public.estado (id) MATCH SIMPLE
 )
 
 CREATE TABLE IF NOT EXISTS public.usuario
