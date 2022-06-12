@@ -141,19 +141,19 @@ const createUser = async (req, res) => {
 
 const getSexo = async (req,res) => {
   const sexos  = await pool.query('SELECT * FROM sexo')
-  res.status(302).json(sexos.rows)
+  res.json(sexos.rows)
 }
 const getEstado = async (req,res) => {
   const estados  = await pool.query('SELECT * FROM estado')
-  res.status(302).json(estados.rows)
+  res.json(estados.rows)
 }
 const getGS = async (req,res) => {
   const gs  = await pool.query('SELECT * FROM grupo_sanguineo')
-  res.status(302).json(gs.rows)
+  res.json(gs.rows)
 }
 const getRH = async (req,res) => {
   const rh  = await pool.query('SELECT * FROM rh')
-  res.status(302).json(rh.rows)
+  res.json(rh.rows)
 }
 
 
