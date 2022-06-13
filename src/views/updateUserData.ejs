@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/main.css">
+  <title>Actualizar datos</title>
+</head>
+<body>
+  <div class="container">
+    <div class="card-small">
+      <form action="/">
+        <input type="submit" formaction="/create-user-data" value="Ingresar datos">
+        <input type="submit" value="Regresar">
+      </form>
+    </div>
+    <form method="POST" action="/update-user-data" class="search">
+      <input class="text-search" type="number" min="0" step="1" name="cedula" id="cedula" placeholder="Cédula" required>
+      <input type="submit" value="buscar">
+    </form>
+    <div class="card flex">
+      <% if(locals.err){ %>
+        <p>
+          <%= err %>
+        </p>
+      <% } %> 
+      <div class="group">
+        <div class="group col gap-0">
+          <p id="usrCedula" class="bold">C.C.:<%= user.cedula %></p>
+          <p class="bold"><%= user.apellidos %></p>
+          <p class="bold"><%= user.nombres %></p>
+        </div>
+        <form id="update" style="width: 50%;">
+          <div class="group col">
+            <select name="estado" id="estado" required>
+            <% estados.forEach(estado => { %>
+              <option value="<%= estado.id %>"
+                <% if (user.estado == estado.estado) { %> 
+                selected
+                <% } %>
+                ><%= estado.estado %></option>
+            <% }); %>
+            </select>
+            <input type="submit" value="Actualizar">
+          </div>
+        </form>
+      </div>
+      <div class="group">
+        <div class="group col gap-0">
+          <p style="font-size: 10px;">Lugar de nacimiento</p>
+          <p class="bold"><%= user.ciudad_nto %></p>
+          <p style="font-size: 10px;" class="bold">(<%= user.dpto_nto %>)</p>
+        </div>
+        <div class="group col gap-0">
+          <p style="font-size: 11px;">Fecha de nacimiento</p>
+          <p class="bold"><%= user.fecha_nacimiento.slice(0,10) %></p>
+        </div>
+      </div>
+      <div class="group">
+        <div class="group">
+          <div class="group col gap-0">
+            <p style="font-size: 11px;">Estatura</p>
+            <p class="bold"><%= user.estatura %></p>
+          </div>
+          <div class="group col gap-0">
+            <p style="font-size: 11px;">G.S. RH</p>
+            <p class="bold"><%= user.gs %><%= user.rh %></p>
+          </div>
+        </div>
+        <div class="group">
+          <div class="group col gap-0">
+            <p style="font-size: 11px;">Sexo</p>
+            <p class="bold"><%= user.sexo %></p>
+          </div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="group col gap-0">
+          <p style="font-size: 11px;">Lugar de expedicion</p>
+          <p class="bold"><%= user.ciudad_exp %></p>
+          <p style="font-size: 10px;" class="bold">(<%= user.dpto_exp %>)</p>
+        </div>
+        <div class="group col gap-0">
+          <p style="font-size: 10px;">Fecha de expedicion</p>
+          <p class="bold"><%= user.fecha_exp.slice(0,10) %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+   
+  <script src="js/updateUsrDta.js"></script>
+</body>
+</html>

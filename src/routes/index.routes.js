@@ -10,4 +10,8 @@ router.get('/signOut', index.signOut);
 
 router.get('/create-user-data', val.validate_token, index.getCreateUserData)
 
+router.get('/update-user-data', val.validate_token, index.getUpdateUserData)
+
+router.post('/update-user-data', val.validate_token, index.searchUserData)
+
 module.exports = router
