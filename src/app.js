@@ -36,5 +36,9 @@ app.use(session({
 app.use('/', require('./routes/index.routes'));
 app.use('/API', require('./routes/api.routes'));
 
+app.use((req, res)=>{
+  res.status(404).redirect('/')
+})
+
 module.exports = app;
 
