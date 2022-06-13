@@ -1,7 +1,10 @@
-const { body } = require('express-validator');
+const {validationResult} = require('express-validator');
 const pool = require('./postgreSQL');
 
 const getDpto = async (req, res) => {
+  if (!req.auth) {
+    return res.status(401).json({ok:false, error: {code:-1, detail:'Sin autorizacion'}})
+  }
   const response = await pool.query(`
     SELECT DISTINCT departamento
     FROM ciudad
@@ -12,6 +15,9 @@ const getDpto = async (req, res) => {
 };
 
 const getCiudadPorDpto = async (req, res) => {
+  if (!req.auth) {
+    return res.status(401).json({ok:false, error: {code:-1, detail:'Sin autorizacion'}})
+  }
   const {departamento} = req.query
   const response = await pool.query(`
     SELECT *
@@ -23,8 +29,11 @@ const getCiudadPorDpto = async (req, res) => {
 }
 
 const getUserData = async (req, res) => {
+  if (!req.auth) {
+    return res.status(401).json({ok:false, error: {code:-1, detail:'Sin autorizacion'}})
+  }
 
-  const user = req.body
+  const user = req.query
   let filter = ''
   if (user.cedula) filter = `WHERE u.cedula = ${user.cedula}`
 
@@ -67,6 +76,9 @@ const getUserData = async (req, res) => {
 }
 
 const createUserData = async (req, res) => {
+  if (!req.auth) {
+    return res.status(401).json({ok:false, error: {code:-1, detail:'Sin autorizacion'}})
+  }
   const user = req.body;
   try {
     await pool.query(`
@@ -107,19 +119,33 @@ const createUserData = async (req, res) => {
 }
 
 const updateUserData = async (req, res) => {
+  if (!req.auth) {
+    return res.status(401).json({ok:false, error: {code:-1, detail:'Sin autorizacion'}})
+  }
   const user = req.body;
+  if(user.cedula==undefined || user.estado == undefined) 
+  return res.status(400).json({ok:false, error: { code:0, detail:'falta el valor de la cedula o el estado'}});
+  
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) return res.status(400).json( 
+    {ok:false, error: { code:0, detail: errors.array()[0].msg}}
+  );
   try {
-    const response = await pool.query(`
+    await pool.query(`
       UPDATE userdata
       SET estado = '${user.estado}'
+      WHERE cedula = '${user.cedula}'
     `)
-    res.status(200).json(response)
+    res.status(200).json({ok:true})
   } catch (error) {
     
   }
 }
 
 const createUser = async (req, res) => {
+  if (!req.auth) {
+    return res.status(401).json({ok:false, error: {code:-1, detail:'Sin autorizacion'}})
+  }
   const user = req.body;
   try {
     await pool.query(`
@@ -140,18 +166,30 @@ const createUser = async (req, res) => {
 }
 
 const getSexo = async (req,res) => {
+  if (!req.auth) {
+    return res.status(401).json({ok:false, error: {code:-1, detail:'Sin autorizacion'}})
+  }
   const sexos  = await pool.query('SELECT * FROM sexo')
   res.json(sexos.rows)
 }
 const getEstado = async (req,res) => {
+  if (!req.auth) {
+    return res.status(401).json({ok:false, error: {code:-1, detail:'Sin autorizacion'}})
+  }
   const estados  = await pool.query('SELECT * FROM estado')
   res.json(estados.rows)
 }
 const getGS = async (req,res) => {
+  if (!req.auth) {
+    return res.status(401).json({ok:false, error: {code:-1, detail:'Sin autorizacion'}})
+  }
   const gs  = await pool.query('SELECT * FROM grupo_sanguineo')
   res.json(gs.rows)
 }
 const getRH = async (req,res) => {
+  if (!req.auth) {
+    return res.status(401).json({ok:false, error: {code:-1, detail:'Sin autorizacion'}})
+  }
   const rh  = await pool.query('SELECT * FROM rh')
   res.json(rh.rows)
 }
