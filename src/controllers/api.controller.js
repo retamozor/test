@@ -12,7 +12,7 @@ const getDpto = async (req, res) => {
 };
 
 const getCiudadPorDpto = async (req, res) => {
-  const {departamento} = req.body
+  const {departamento} = req.query
   const response = await pool.query(`
     SELECT *
     FROM ciudad
@@ -91,17 +91,17 @@ const createUserData = async (req, res) => {
         '${user.fecha_nacimiento}',
         '${user.lugar_nacimiento}',
         '${user.estatura}',
-        '${user.gs}',
-        '${user.rh}',
+        '${user.GS}',
+        '${user.RH}',
         '${user.sexo}',
-        '${user.fecha_exp}',
-        '${user.lugar_exp}',
+        '${user.fecha_expedicion}',
+        '${user.lugar_expedicion}',
         '${user.estado}'
       )
     `)
-    res.status(200)
+    res.status(200).json({ok:true})
   } catch (error) {
-    res.status(400).json(error)
+    res.status(400).json({ok:false, error})
   }
   
 }
