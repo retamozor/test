@@ -5,7 +5,7 @@
       <% errors.forEach(error=> { %>
         <p class="error"><%= error.msg %></p>
       <% }); %>
-      <input type="text" name="usuario" id="usuario" placeholder="Usuario">
+      <input type="text" maxlength="10" name="usuario" id="usuario" placeholder="Usuario">
       <input type="password" name="password" id="password" placeholder="Contraseña">
       <input type="submit" value="Iniciar sesión">
     </form>
