@@ -30,14 +30,16 @@ h2 {
 
 .card {
   background: var(--neutral-600);
-  width: 288.5px;
-  height: 216.29px;
+  width: 21em;
+  height: 14em;
   box-shadow: 0px 4px 4px var(--shadow);
   border-radius: 1.5em;
   padding: 1em;
 }
 
-.card form {
+.card form,
+.card-small form,
+.card-large form {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,17 +49,41 @@ h2 {
   gap: 1em
 }
 
+.card-large {
+  background: var(--neutral-600);
+  width: 21em;
+  height: 34em;
+  box-shadow: 0px 4px 4px var(--shadow);
+  border-radius: 1.5em;
+  padding: 1em;
+}
+
+.card-small {
+  background: var(--neutral-600);
+  width: 21em;
+  height: 7em;
+  box-shadow: 0px 4px 4px var(--shadow);
+  border-radius: 1.5em;
+  padding: 1em;
+}
+
 .container {
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  gap:1em;
+  padding: 2em;
   justify-content: center;
   align-items: center;
   background: var(--neutral-100);
 }
 
 input[type=text],
-input[type=password] {
+input[type=password],
+input[type=number],
+input[type=date],
+select {
   font-family: 'Farro', sans-serif;
   height: 2em;
   width: 100%;
@@ -75,6 +101,7 @@ input[type=password] {
 input[type=submit] {
   font-family: 'Farro', sans-serif;
   color: var(--neutral-100);
+  user-select: none;
   margin: 0 2em;
   width: 100%;
   height: 2em;
@@ -93,6 +120,12 @@ input[type=submit]:hover {
   box-shadow: 3px 6px 6px var(--shadow);
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 p {
   font-family: 'Farro', sans-serif;
   color: var(--neutral-100);
@@ -101,4 +134,28 @@ p {
 .error {
   color: red;
   font-size: 11px;
+}
+
+.group {
+  width: 100%;
+  display: flex;
+  gap:1em
+}
+
+@media screen and (min-width: 700px) {
+  .card-large,
+  .card-small {
+    width: 35em;
+    padding: 0 2em;
+  }
+  
+  .card {
+    width: 30em;
+    height: 20em;
+    padding: 0 2.5em;
+  }
+
+  .card form {
+    gap: 1.7em;
+  }
 }

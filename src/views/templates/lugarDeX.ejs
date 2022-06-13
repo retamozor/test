@@ -1,0 +1,14 @@
+<div>
+  <p>lugar de <%- lugar %></p>
+  <div class="group">
+    <select name="departamento_<%- lugar %>" id="departamento_<%- lugar %>" required>
+      <option value="" disabled selected>Departamento</option>
+    <% departamentos.forEach(dpto => { %>
+      <option value="<%= dpto.departamento %>"><%= dpto.departamento %></option>
+    <% }); %>
+    </select>
+    <select name="lugar_<%= lugar %>" id="lugar_<%= lugar %>" required>
+      <option value="" disabled selected>Ciudad</option>
+    </select>
+  </div>
+</div>

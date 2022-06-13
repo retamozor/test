@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/main.css">
+  <title>Ingresar datos</title>
+</head>
+<body>
+  <div class="container">
+    <div class="card-small">
+      <form action="/">
+        <input type="submit" formaction="/update-user-data" value="Actualizar datos">
+        <input type="submit" value="Regresar">
+      </form>
+    </div>
+    <div class="card-large">
+      <form id="form">
+        <h2>Ingresar datos</h2>
+        <input type="number" min="0" step="1" name="cedula" id="cedula" placeholder="Cédula" required>
+        <input type="text" maxlength="40" name="nombres" id="nombres" placeholder="Nombres" required>
+        <input type="text" maxlength="40" name="apellidos" id="apellidos" placeholder="Apellidos" required>
+        <%- include('./templates/lugarDeX', {lugar: "nacimiento"}) %>
+        <input type="text" 
+          name="fecha_nacimiento" 
+          id="fecha_nacimiento"
+          placeholder="Fecha de nacimiento"
+          onfocus="(this.type='date')"
+          onblur="(this.type='text')" required>
+
+        <div class="group">
+          <input style="width: 50%;" 
+            type="number" 
+            min="0" max="300" step="1" 
+            name="estatura" 
+            id="estatura" 
+            placeholder="Estatura" required>
+
+          <div class="group">
+            <select name="GS" id="GS" required>
+              <option value="" disabled selected>G.S.</option>
+            <% GSs.forEach(GS => { %>
+              <option value="<%= GS.id %>"><%= GS.gs %></option>
+            <% }); %>
+            </select>
+            <select name="RH" id="RH" required>
+              <option value="" disabled selected>RH</option>
+            <% RHs.forEach(RH => { %>
+              <option value="<%= RH.id %>"><%= RH.rh %></option>
+            <% }); %>
+            </select>
+          </div>
+        </div>
+        
+        <%- include('./templates/lugarDeX', {lugar: "expedicion"}) %>
+        <input type="text"
+          name="fecha_expedicion"
+          id="fecha_expedicion"
+          placeholder="fecha de expedicion"
+          onfocus="(this.type='date')"
+          onblur="(this.type='text')" required>
+        <div class="group">
+          <select name="estado" id="estado" required>
+            <option value="" disabled selected>Estado civil</option>
+          <% estados.forEach(estado => { %>
+            <option value="<%= estado.id %>"><%= estado.estado %></option>
+          <% }); %>
+          </select>
+  
+          <select name="sexo" id="sexo" required>
+            <option value="" disabled selected>Sexo</option>
+          <% sexos.forEach(sexo => { %>
+            <option value="<%= sexo.id %>"><%= sexo.sexo %></option>
+          <% }); %>
+          </select>
+        </div>
+        <input type="submit" value="crear">
+      </form>
+    </div>
+  </div>
+
+  <script src="js/index.js"></script>
+</body>
+</html>
